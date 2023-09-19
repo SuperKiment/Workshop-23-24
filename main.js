@@ -1,11 +1,11 @@
-import TemplateMiniJeu from "./MiniJeux/templateMiniJeu/templateMiniJeu.js";
+import MemoireJeu from "./MiniJeux/Memoire/templateMiniJeu.js";
 
 var canvas = document.getElementById("MiniJeu");
 var ctx = canvas.getContext("2d");
 ctx.canvas.width = window.innerWidth*0.5;
 ctx.canvas.height = window.innerHeight*0.9;
 
-var t = new TemplateMiniJeu(canvas = canvas, ctx = ctx);
+var t = new MemoireJeu(canvas = canvas, ctx = ctx);
 
 
 function draw() {
