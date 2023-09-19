@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Gamedev Canvas Workshop</title>
     <style>
         * {
             padding: 0;
@@ -21,16 +20,15 @@
         }
 
         canvas {
-            background: lightcyan;
+            background: darkcyan;
             display: block;
             margin: auto;
         }
 
         .minijeu {
-            width: 52%;
-            height: 93%;
+            width: 50%;
+            height: 90%;
             margin: auto;
-            background-color:aqua;
         }
 
         .vertical-center {
@@ -38,15 +36,28 @@
             position: relative;
             top: 1%;
         }
+
+        .hud {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: aliceblue;
+        }
     </style>
 </head>
 
 <body>
+    <div class="hud">
+        <canvas id="HUD" width="300" height="300"></canvas>
+    </div>
+
     <div class="minijeu">
         <div class="vertical-center">
             <canvas id="MiniJeu" width="800" height="750"></canvas>
         </div>
     </div>
+
+
 
     <script type="module" src="main.js">
 
