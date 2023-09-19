@@ -19,7 +19,9 @@ export default class MemoireJeu extends MiniJeu {
         // Définir la taille du carré et des cartes
         this.squareSize = 80;
         this.cardSize = 90;
+        this.timer = 0;
         var reponse = prompt("Combien de paires voulez-vous ? :");
+        ctx.font = "48px serif";
 
         if (reponse !== null) {
             reponse = parseInt(reponse);
@@ -60,7 +62,7 @@ export default class MemoireJeu extends MiniJeu {
 
                     let pose = false;
                     while (!pose) {
-                        let x = Math.round(Math.random() * (this.nombrepaires/2-1));
+                        let x = Math.round(Math.random() * (this.nombrepaires / 2 - 1));
                         let y = Math.round(Math.random() * 3);
 
                         if (this.valeur[x][y] == 0) {
@@ -81,17 +83,7 @@ export default class MemoireJeu extends MiniJeu {
 
     Update() {// Dessiner les 12 cartes séparées par des espaces
         var aleatoire = 0;
-
-/*
-
-        if (this.nombrepaires == 6) {
-            valeur = [[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]]
-        }
-        if (this.nombrepaires == 8) {
-            valeur = [[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]]
-        }
-
-*/
+        this.timer += 1;
         for (let row = 0; row < this.nombrepaires / 2; row++) {
             for (let col = 0; col < 4; col++) {
                 var y = col * (this.squareSize + 20); // Espacement horizontal
@@ -105,6 +97,14 @@ export default class MemoireJeu extends MiniJeu {
 
                 this.ctx.strokeStyle = "black";
                 this.ctx.strokeRect(x, y, this.cardSize, this.cardSize);
+
+                this.ctx.fillStyle = "black";
+
+                this.ctx.fillText(this.valeur[row][col], x+20, y+50);
+                if (this.timer > 5000){
+                    this.timer == 0 
+                }
+                
             };
         }
     }
