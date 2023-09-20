@@ -11,5 +11,8 @@ export default class UI {
         this.ctx.fillStyle = "aquamarine";
         this.ctx.fill();
         this.ctx.closePath();
+
+        this.ctx.fillStyle = "black";
+        this.ctx.fillText("COINS", 50 ,50);
     }
 }

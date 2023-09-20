@@ -1,6 +1,7 @@
 import MemoireJeu from "./MiniJeux/Memoire/templateMiniJeu.js";
 import TemplateMiniJeu from "./MiniJeux/templateMiniJeu/templateMiniJeu.js";
 import UI from "./UI/UI.js";
+import GameManager from "./GameManager/GameManager.js";
 
 var canvasMiniJeu = document.getElementById("MiniJeu");
 var canvasHUD = document.getElementById("HUD");
@@ -10,6 +11,8 @@ var ctxHUD = canvasHUD.getContext("2d");
 
 ctxMiniJeu.canvas.width = window.innerWidth * 0.5;
 ctxMiniJeu.canvas.height = window.innerHeight * 0.9;
+
+ctxHUD.font = "15px serif";
 
 ctxHUD.canvas.width = window.innerWidth;
 ctxHUD.canvas.height = 300;
