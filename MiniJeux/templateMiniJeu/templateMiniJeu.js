@@ -18,20 +18,11 @@ export default class TemplateMiniJeu extends MiniJeu {
         for (let i = 0; i < 50; i++) {
             this.allBoules.push(new Boule(this.canvas, ctx));
         }
-    }
 
-    
-
-    Pincification() {
-        if (Math.round(Math.random() * 1000000) == 5) {
-            console.log(Math.round(Math.random() * 10));
-            b = allBoules[Math.round(Math.random() * allBoules.length - 1)]
-            b.pinceau = !b.pinceau;
-        }
+        //canvas.addEventListener("click", function(){alert('Hello !');});
     }
 
     Update() {
-        this.Pincification();
         this.allBoules.forEach(boule => {
             boule.Update();
         });

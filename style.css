@@ -47,6 +47,7 @@ button {
     border: 0;
     padding: 10px;
     border-radius: 8px;
+    font-weight: 800;
 }
 
 button:hover {
@@ -64,4 +65,15 @@ button:hover {
     /* Centre horizontalement */
     align-items: center;
     /* Centre verticalement */
+}
+
+.title {
+    position: absolute;
+    top: 70px;
+    font-size: 70px;
+    font-weight: 800;
+    background-color: lightblue;
+    color: darkblue;
+    padding: 10px 50px;
+    border-radius: 30px;
 }

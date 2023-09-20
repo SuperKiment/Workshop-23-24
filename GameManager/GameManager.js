@@ -12,11 +12,11 @@ export default class GameManager {
     static ctx;
 
     static onMenuClick() {
-        console.log("Menu");
+        ToGameManager("Menu");
     }
 
     static onJouerClick() {
-        ToGameManager("Jouer")
+        ToGameManager("Jouer");
     }
 
     static onOptionsClick() {
@@ -48,22 +48,23 @@ export default class GameManager {
     }
 
     static Jouer() {
-
-        let allBoutons = this.LoadBoutons();
-
-        for (let boutonString in this.boutons) {
-            if (boutonString == "Jouer" || boutonString == "Options" || boutonString == "APropos") {
-                console.log(boutonString)
-                allBoutons["Btn" + boutonString].style.display = "none";
-            }
-        }
-
         document.getElementById("Title").style.display = "none";
+        document.getElementById("BoutonsMilieu").style.display = "none";
 
         this.runningGame = null;
         this.runningGame = new this.miniJeux["Memoire"](this.ctx.canvas, this.ctx);
 
+        //this.ctx.canvas.removeEventListener('click');
+    }
 
+    static Menu() {
+        
+        document.getElementById("BoutonsMilieu").style.display = "block";
+        document.getElementById("Title").style.display = "block";
+
+
+        this.runningGame = null;
+        this.runningGame = new this.miniJeux["Template"](this.ctx.canvas, this.ctx);
     }
 }
 
@@ -71,6 +72,9 @@ function ToGameManager(btn) {
     switch (btn) {
         case "Jouer":
             GameManager.Jouer();
+            break;
+        case "Menu":
+            GameManager.Menu();
             break;
         default: console.log("Pas trouvé le bouton")
     }
