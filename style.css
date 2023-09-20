@@ -16,7 +16,7 @@ body {
 }
 
 canvas {
-    background: darkcyan;
+    background: gray;
     display: block;
     margin: auto;
 }

@@ -10,7 +10,7 @@ export default class UI {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.beginPath();
         this.ctx.rect(10, 10, this.canvas.width - 20, this.canvas.height - 20);
-        this.ctx.fillStyle = "aquamarine";
+        this.ctx.fillStyle = "rgb(220, 220, 220)";
         this.ctx.fill();
         this.ctx.closePath();
 

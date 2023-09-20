@@ -33,7 +33,7 @@ function draw() {
     ctxMiniJeu.clearRect(0, 0, canvasMiniJeu.width, canvasMiniJeu.height);
     ctxMiniJeu.beginPath();
     ctxMiniJeu.rect(10, 10, canvasMiniJeu.width - 20, canvasMiniJeu.height - 20);
-    ctxMiniJeu.fillStyle = "aquamarine";
+    ctxMiniJeu.fillStyle = "rgb(240, 240, 240)";
     ctxMiniJeu.fill();
     ctxMiniJeu.closePath();
 
