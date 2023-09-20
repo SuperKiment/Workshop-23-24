@@ -18,8 +18,9 @@ export default class MemoireJeu extends MiniJeu {
         this.nombrepaires = 0
         // Définir la taille du carré et des cartes
         this.squareSize = 80;
-        this.cardSize = 90;
+        this.cardSize = 100;
         this.timer = 0;
+        this.cartesAffichees = true;
         var reponse = prompt("Combien de paires voulez-vous ? :");
         ctx.font = "48px serif";
 
@@ -84,6 +85,12 @@ export default class MemoireJeu extends MiniJeu {
     Update() {// Dessiner les 12 cartes séparées par des espaces
         var aleatoire = 0;
         this.timer += 1;
+        if (this.timer > 500) {
+            this.timer = 0
+            this.cartesAffichees = false;
+        }
+
+
         for (let row = 0; row < this.nombrepaires / 2; row++) {
             for (let col = 0; col < 4; col++) {
                 var y = col * (this.squareSize + 20); // Espacement horizontal
@@ -91,21 +98,22 @@ export default class MemoireJeu extends MiniJeu {
 
                 this.ctx.fillStyle = "white";
                 this.ctx.fillRect(x, y, this.cardSize, this.cardSize);
+              /*  const x = event.client - rect.left;
+                const y = event.client - rect.top;*/
+
 
                 // Vous pouvez personnaliser chaque carte ici
                 // Par exemple, vous pouvez ajouter du texte ou des images
 
                 this.ctx.strokeStyle = "black";
                 this.ctx.strokeRect(x, y, this.cardSize, this.cardSize);
+                if (this.cartesAffichees) {
 
-                this.ctx.fillStyle = "black";
+                    this.ctx.fillStyle = "black";
 
-                this.ctx.fillText(this.valeur[row][col], x+20, y+50);
-                if (this.timer > 5000){
-                    this.timer == 0 
+                    this.ctx.fillText(this.valeur[row][col], x + 20, y + 50);
                 }
-                
-            };
+            }
         }
     }
 }

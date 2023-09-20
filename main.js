@@ -17,7 +17,7 @@ ctxHUD.canvas.height = 300;
 var ui = new UI(ctxHUD.canvas, ctxHUD);
 
 var miniJeux = {
-    //"Memoire" : new MemoireJeu(canvas = canvas, ctx = ctx),
+    "Memoire" : new MemoireJeu(canvasMiniJeu = canvasMiniJeu, ctxMiniJeu = ctxMiniJeu),
     "Template": new TemplateMiniJeu(canvasMiniJeu = canvasMiniJeu, ctxMiniJeu = ctxMiniJeu)
 }
 
@@ -33,7 +33,7 @@ function draw() {
     ctxMiniJeu.fill();
     ctxMiniJeu.closePath();
 
-    miniJeux["Template"].Update();
+    miniJeux["Memoire"].Update();
 }
 
 setInterval(draw, 10);
