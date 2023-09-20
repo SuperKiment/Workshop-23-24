@@ -7,9 +7,20 @@ export default class GameManager {
         "Options": this.onOptionsClick,
         "APropos": this.onAProposClick,
         "Jouer": this.onJouerClick,
+        "Passer": this.onPasserClick,
+        "Recommencer": this.onRecommencerClick,
     };
     static miniJeux = {};
     static ctx;
+    static etape = 0;
+
+    static onPasserClick() {
+        ToGameManager("Passer");
+    }
+
+    static onRecommencerClick() {
+        ToGameManager("Recommencer");
+    }
 
     static onMenuClick() {
         ToGameManager("Menu");
@@ -47,18 +58,48 @@ export default class GameManager {
         return res;
     }
 
-    static Jouer() {
-        document.getElementById("Title").style.display = "none";
-        document.getElementById("BoutonsMilieu").style.display = "none";
+    static UpdateState(step) {
+        switch (step) {
+            case "Menu":
+                this.etape = 0;
+                this.Menu();
+                break;
 
-        this.runningGame = null;
-        this.runningGame = new this.miniJeux["Memoire"](this.ctx.canvas, this.ctx);
+            case "Jouer":
+                this.etape = 1;
+                document.getElementById("Title").style.display = "none";
+                document.getElementById("BoutonsMilieu").style.display = "none";
+                break;
 
-        //this.ctx.canvas.removeEventListener('click');
+            case "Suivant":
+                this.etape++;
+                console.log("bfzek")
+                break;
+
+            case "Recommencer":
+                //this.runningGame = new this.miniJeux["Memoire"](this.ctx.canvas, this.ctx);
+                break;
+        }
+
+        if (this.etape != 0) {
+            document.getElementById("BtnPasser").style.display = "block";
+            document.getElementById("BtnRecommencer").style.display = "block";
+
+            this.runningGame = null;
+            switch (this.etape) {
+                case 1:
+                    this.runningGame = new this.miniJeux["Memoire"](this.ctx.canvas, this.ctx);
+                    break;
+
+            }
+        } else {
+            document.getElementById("BtnPasser").style.display = "none";
+            document.getElementById("BtnRecommencer").style.display = "none";
+        }
     }
 
     static Menu() {
-        
+
         document.getElementById("BoutonsMilieu").style.display = "block";
         document.getElementById("Title").style.display = "block";
 
@@ -71,10 +112,16 @@ export default class GameManager {
 function ToGameManager(btn) {
     switch (btn) {
         case "Jouer":
-            GameManager.Jouer();
+            GameManager.UpdateState("Jouer");
             break;
         case "Menu":
-            GameManager.Menu();
+            GameManager.UpdateState("Menu");
+            break;
+        case "Recommencer":
+            GameManager.UpdateState("Recommencer");
+            break;
+        case "Passer":
+            GameManager.UpdateState("Suivant");
             break;
         default: console.log("Pas trouvé le bouton")
     }

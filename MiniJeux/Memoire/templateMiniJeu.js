@@ -25,7 +25,8 @@ export default class MemoireJeu extends MiniJeu {
         this.cardSize = 100;
         this.timer = 0;
         this.cartesAffichees = true;
-        var reponse = prompt("Combien de paires voulez-vous ? :");
+        var reponse = prompt("Vous allez jouer au Memory !\nCombien de paires voulez-vous ? (4/6/8)");
+        
         ctx.font = "48px serif";
 
         if (reponse !== null) {
