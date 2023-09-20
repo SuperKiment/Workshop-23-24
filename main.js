@@ -12,7 +12,6 @@ var ctxHUD = canvasHUD.getContext("2d");
 ctxMiniJeu.canvas.width = window.innerWidth * 0.5;
 ctxMiniJeu.canvas.height = window.innerHeight * 0.9;
 
-ctxHUD.font = "15px serif";
 
 ctxHUD.canvas.width = window.innerWidth;
 ctxHUD.canvas.height = 300;
@@ -20,23 +19,27 @@ ctxHUD.canvas.height = 300;
 var ui = new UI(ctxHUD.canvas, ctxHUD);
 
 var miniJeux = {
-    "Memoire" : new MemoireJeu(canvasMiniJeu = canvasMiniJeu, ctxMiniJeu = ctxMiniJeu),
-    "Template": new TemplateMiniJeu(canvasMiniJeu = canvasMiniJeu, ctxMiniJeu = ctxMiniJeu)
+    "Memoire": MemoireJeu,
+    "Template": TemplateMiniJeu
 }
+
+GameManager.Setup(miniJeux, ctxMiniJeu);
 
 function draw() {
     ui.Update();
-    
+
 
     //Minijeu
     ctxMiniJeu.clearRect(0, 0, canvasMiniJeu.width, canvasMiniJeu.height);
     ctxMiniJeu.beginPath();
-    ctxMiniJeu.rect(10, 10, canvasMiniJeu.width-20, canvasMiniJeu.height-20);
+    ctxMiniJeu.rect(10, 10, canvasMiniJeu.width - 20, canvasMiniJeu.height - 20);
     ctxMiniJeu.fillStyle = "aquamarine";
     ctxMiniJeu.fill();
     ctxMiniJeu.closePath();
 
-    miniJeux["Memoire"].Update();
+    if (GameManager.runningGame != null) {
+        GameManager.runningGame.Update();
+    }
 }
 
 setInterval(draw, 10);

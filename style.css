@@ -1,0 +1,67 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: monospace;
+    font-size: 20px;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+canvas {
+    background: darkcyan;
+    display: block;
+    margin: auto;
+}
+
+.minijeu {
+    width: 50%;
+    height: 90%;
+    margin: auto;
+    background-color: bisque;
+}
+
+.vertical-center {
+    margin: 0;
+    position: relative;
+    top: 1%;
+}
+
+.hud {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+button {
+    background-color: lightblue;
+    cursor: pointer;
+    position: absolute;
+    border: 0;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: rgb(110, 139, 149);
+    color: aliceblue;
+}
+
+.div-pleine-page {
+    width: 100vw;
+    /* 100% de la largeur de la vue (viewport) */
+    height: 100vh;
+    /* 100% de la hauteur de la vue (viewport) */
+    display: flex;
+    justify-content: center;
+    /* Centre horizontalement */
+    align-items: center;
+    /* Centre verticalement */
+}

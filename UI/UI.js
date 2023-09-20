@@ -1,3 +1,5 @@
+import GameManager from "../GameManager/GameManager.js";
+
 export default class UI {
     constructor(canvas, ctx) {
         this.canvas = canvas;
@@ -12,7 +14,9 @@ export default class UI {
         this.ctx.fill();
         this.ctx.closePath();
 
+        this.ctx.font = "30px monospace";
+
         this.ctx.fillStyle = "black";
-        this.ctx.fillText("COINS", 50 ,50);
+        this.ctx.fillText(GameManager.Coins + " COINS", 50 ,50);
     }
 }

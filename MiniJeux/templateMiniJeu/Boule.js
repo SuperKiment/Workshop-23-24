@@ -6,7 +6,6 @@ export default class Boule {
         this.y = Math.random() * canvas.height;
 
         this.taille = Math.random() * 15;
-        this.pinceau = false;
 
         let dividing = 4;
 
@@ -16,32 +15,13 @@ export default class Boule {
         this.color = "rgb(" + Math.random() * 255 + ", " + Math.random() * 255 + ", " + Math.random() * 255 + ")";
     }
 
-    drawBall(px, py, taille, color, pinceau) {
+    drawBall(px, py, taille, color) {
         this.ctx.beginPath();
         this.ctx.arc(px, py, taille, 0, Math.PI * 2);
         this.ctx.fillStyle = color;
         this.ctx.fill();
         this.ctx.closePath();
 
-        if (pinceau) {
-            this.ctx.beginPath();
-            this.ctx.arc(px, py + taille, taille, 0, Math.PI * 2);
-            this.ctx.fillStyle = color;
-            this.ctx.fill();
-            this.ctx.closePath();
-
-            this.ctx.beginPath();
-            this.ctx.arc(px + taille * 4, py + taille / 1.5, taille / 1.5, 0, Math.PI * 2);
-            this.ctx.fillStyle = color;
-            this.ctx.fill();
-            this.ctx.closePath();
-
-            this.ctx.beginPath();
-            this.ctx.rect(px, py, taille * 4, taille * 1.5);
-            this.ctx.fillStyle = color;
-            this.ctx.fill();
-            this.ctx.closePath();
-        }
     }
 
     Update() {
@@ -65,7 +45,7 @@ export default class Boule {
         }
 
 
-        this.drawBall(this.x, this.y, this.taille, this.color, this.pinceau);
+        this.drawBall(this.x, this.y, this.taille, this.color);
     }
 
 
