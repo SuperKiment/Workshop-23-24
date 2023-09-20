@@ -58,6 +58,8 @@ export default class GameManager {
             }
         }
 
+        document.getElementById("Title").style.display = "none";
+
         this.runningGame = null;
         this.runningGame = new this.miniJeux["Memoire"](this.ctx.canvas, this.ctx);
 
