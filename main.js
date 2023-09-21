@@ -1,5 +1,6 @@
 import MemoireJeu from "./MiniJeux/Memoire/templateMiniJeu.js";
 import TemplateMiniJeu from "./MiniJeux/templateMiniJeu/templateMiniJeu.js";
+import LabyrintheJeu from "./MiniJeux/Labyrinthe/templateMiniJeu.js";
 import UI from "./UI/UI.js";
 import GameManager from "./GameManager/GameManager.js";
 
@@ -20,7 +21,8 @@ var ui = new UI(ctxHUD.canvas, ctxHUD);
 
 var miniJeux = {
     "Memoire": MemoireJeu,
-    "Template": TemplateMiniJeu
+    "Template": TemplateMiniJeu,
+    "Labyrinthe": LabyrintheJeu
 }
 
 GameManager.Setup(miniJeux, ctxMiniJeu);

@@ -1,3 +1,5 @@
+import GameManager from "../GameManager/GameManager.js";
+
 export default class MiniJeu {
     constructor(canvas, ctx, tailleX, tailleY) {
         this.canvas = canvas
@@ -11,6 +13,6 @@ export default class MiniJeu {
     }
 
     Gagne() {
-        
+        GameManager.UpdateState("Suivant");
     }
 }

@@ -81,6 +81,7 @@ export default class GameManager {
                 break;
         }
 
+        document.getElementById("ControlesLaby").style.display = "none";
         if (this.etape != 0) {
             document.getElementById("BtnPasser").style.display = "block";
             document.getElementById("BtnRecommencer").style.display = "block";
@@ -89,6 +90,10 @@ export default class GameManager {
             switch (this.etape) {
                 case 1:
                     this.runningGame = new this.miniJeux["Memoire"](this.ctx.canvas, this.ctx);
+                    break;
+                case 2:
+                    document.getElementById("ControlesLaby").style.display = "block";
+                    this.runningGame = new this.miniJeux["Labyrinthe"](this.ctx.canvas, this.ctx);
                     break;
 
             }

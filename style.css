@@ -77,3 +77,12 @@ button:hover {
     padding: 10px 50px;
     border-radius: 30px;
 }
+
+section button {
+    position:sticky;
+}
+
+.control {
+    margin-top: 20px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
