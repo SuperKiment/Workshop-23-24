@@ -6,13 +6,15 @@ export default class MiniJeu {
         this.ctx = ctx;
         this.tailleX = tailleX;
         this.tailleY = tailleY;
+        this.textGagne = "Bravo ! Tu as gagné !";
     }
 
     Update() {
-        
+
     }
 
     Gagne() {
         GameManager.UpdateState("Suivant");
+        alert(this.textGagne);
     }
 }

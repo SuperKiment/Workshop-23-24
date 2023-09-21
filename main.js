@@ -1,5 +1,6 @@
 import MemoireJeu from "./MiniJeux/Memoire/templateMiniJeu.js";
 import TemplateMiniJeu from "./MiniJeux/templateMiniJeu/templateMiniJeu.js";
+import SnakeJeu from "./MiniJeux/Snake/templateMiniJeu.js";
 import LabyrintheJeu from "./MiniJeux/Labyrinthe/templateMiniJeu.js";
 import UI from "./UI/UI.js";
 import GameManager from "./GameManager/GameManager.js";
@@ -22,7 +23,8 @@ var ui = new UI(ctxHUD.canvas, ctxHUD);
 var miniJeux = {
     "Memoire": MemoireJeu,
     "Template": TemplateMiniJeu,
-    "Labyrinthe": LabyrintheJeu
+    "Labyrinthe": LabyrintheJeu,
+    "Snake": SnakeJeu,
 }
 
 GameManager.Setup(miniJeux, ctxMiniJeu);
@@ -44,4 +46,4 @@ function draw() {
     }
 }
 
-setInterval(draw, 10);
+setInterval(draw, 80);

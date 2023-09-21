@@ -82,6 +82,7 @@ export default class GameManager {
         }
 
         document.getElementById("ControlesLaby").style.display = "none";
+        document.getElementById("SnakeControls").style.display = "none";
         if (this.etape != 0) {
             document.getElementById("BtnPasser").style.display = "block";
             document.getElementById("BtnRecommencer").style.display = "block";
@@ -94,6 +95,10 @@ export default class GameManager {
                 case 2:
                     document.getElementById("ControlesLaby").style.display = "block";
                     this.runningGame = new this.miniJeux["Labyrinthe"](this.ctx.canvas, this.ctx);
+                    break;
+                case 3:
+                    document.getElementById("SnakeControls").style.display = "block";
+                    this.runningGame = new this.miniJeux["Snake"](this.ctx.canvas, this.ctx);
                     break;
 
             }

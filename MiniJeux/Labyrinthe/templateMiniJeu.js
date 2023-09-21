@@ -101,7 +101,6 @@ export default class LabyrintheJeu extends MiniJeu {
     }
 
 
-
     checkCollision(x, y) {
         // Calculer les indices de la cellule actuelle du joueur
         const checkX = x + (20 * this.dx);
