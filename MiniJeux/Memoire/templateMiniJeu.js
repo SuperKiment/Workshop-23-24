@@ -1,6 +1,5 @@
 import MiniJeu from '../MiniJeu.js'
 
-
 export default class MemoireJeu extends MiniJeu {
     /*
     Fonction "Gagne()" pour dire qu'on a gagné, exemple:
@@ -16,7 +15,6 @@ export default class MemoireJeu extends MiniJeu {
 
     }
 
-
     constructor(canvas, ctx, tailleX, tailleY) {
         super(canvas, ctx, tailleX, tailleY);
         this.nombrepaires = 0
@@ -26,7 +24,10 @@ export default class MemoireJeu extends MiniJeu {
         this.timer = 0;
         this.cartesAffichees = true;
         var reponse = prompt("Vous allez jouer au Memory !\nCombien de paires voulez-vous ? (4/6/8)");
-        
+
+        this.premierclic = 0;
+        this.deuxiemeclic = 0;
+
         ctx.font = "48px serif";
 
         if (reponse !== null) {
@@ -84,54 +85,54 @@ export default class MemoireJeu extends MiniJeu {
 
         if (reponse == 4) {
             this.carres = [
-                { x: 75, y: 75, largeur: 75, hauteur: 75, numero: -1 },
-                { x: 75, y: 150, largeur: 75, hauteur: 75, numero: -1 },
-                { x: 75, y: 225, largeur: 75, hauteur: 75, numero: -1 },
-                { x: 75, y: 300, largeur: 75, hauteur: 75, numero: -1 },
-                { x: 150, y: 75, largeur: 75, hauteur: 75, numero: -1 },
-                { x: 150, y: 150, largeur: 75, hauteur: 75, numero: -1 },
-                { x: 150, y: 225, largeur: 75, hauteur: 75, numero: -1 },
-                { x: 150, y: 300, largeur: 75, hauteur: 75, numero: -1 },
+                { x: 75, y: 75, largeur: 75, hauteur: 75, chiffre_affiche: false},
+                { x: 75, y: 150, largeur: 75, hauteur: 75, chiffre_affiche: false},
+                { x: 75, y: 225, largeur: 75, hauteur: 75, chiffre_affiche: false},
+                { x: 75, y: 300, largeur: 75, hauteur: 75, chiffre_affiche: false},
+                { x: 150, y: 75, largeur: 75, hauteur: 75, chiffre_affiche: false},
+                { x: 150, y: 150, largeur: 75, hauteur: 75, chiffre_affiche: false},
+                { x: 150, y: 225, largeur: 75, hauteur: 75, chiffre_affiche: false},
+                { x: 150, y: 300, largeur: 75, hauteur: 75, chiffre_affiche: false},
 
             ];
         }
 
         if (reponse == 6) {
             this.carres = [
-                { x: 75, y: 75, largeur: 75, hauteur: 75 },
-                { x: 75, y: 150, largeur: 75, hauteur: 75 },
-                { x: 75, y: 225, largeur: 75, hauteur: 75 },
-                { x: 75, y: 300, largeur: 75, hauteur: 75 },
-                { x: 150, y: 75, largeur: 75, hauteur: 75 },
-                { x: 150, y: 150, largeur: 75, hauteur: 75 },
-                { x: 150, y: 225, largeur: 75, hauteur: 75 },
-                { x: 150, y: 300, largeur: 75, hauteur: 75 },
-                { x: 225, y: 75, largeur: 75, hauteur: 75 },
-                { x: 225, y: 150, largeur: 75, hauteur: 75 },
-                { x: 225, y: 225, largeur: 75, hauteur: 75 },
-                { x: 225, y: 300, largeur: 75, hauteur: 75 },
+                { x: 75, y: 75, largeur: 75, hauteur: 75 , chiffre_affiche: false },
+                { x: 75, y: 150, largeur: 75, hauteur: 75 , chiffre_affiche: false },
+                { x: 75, y: 225, largeur: 75, hauteur: 75 , chiffre_affiche: false },
+                { x: 75, y: 300, largeur: 75, hauteur: 75 , chiffre_affiche: false },
+                { x: 150, y: 75, largeur: 75, hauteur: 75 , chiffre_affiche: false },
+                { x: 150, y: 150, largeur: 75, hauteur: 75, chiffre_affiche: false  },
+                { x: 150, y: 225, largeur: 75, hauteur: 75 , chiffre_affiche: false },
+                { x: 150, y: 300, largeur: 75, hauteur: 75 , chiffre_affiche: false },
+                { x: 225, y: 75, largeur: 75, hauteur: 75, chiffre_affiche: false  },
+                { x: 225, y: 150, largeur: 75, hauteur: 75 , chiffre_affiche: false },
+                { x: 225, y: 225, largeur: 75, hauteur: 75 , chiffre_affiche: false },
+                { x: 225, y: 300, largeur: 75, hauteur: 75 , chiffre_affiche: false },
 
             ];
         }
 
         if (reponse == 8) {
             this.carres = [
-                { x: 75, y: 75, largeur: 75, hauteur: 75 },
-                { x: 75, y: 150, largeur: 75, hauteur: 75 },
-                { x: 75, y: 225, largeur: 75, hauteur: 75 },
-                { x: 75, y: 300, largeur: 75, hauteur: 75 },
-                { x: 150, y: 75, largeur: 75, hauteur: 75 },
-                { x: 150, y: 150, largeur: 75, hauteur: 75 },
-                { x: 150, y: 225, largeur: 75, hauteur: 75 },
-                { x: 150, y: 300, largeur: 75, hauteur: 75 },
-                { x: 225, y: 75, largeur: 75, hauteur: 75 },
-                { x: 225, y: 150, largeur: 75, hauteur: 75 },
-                { x: 225, y: 225, largeur: 75, hauteur: 75 },
-                { x: 225, y: 300, largeur: 75, hauteur: 75 },
-                { x: 300, y: 75, largeur: 75, hauteur: 75 },
-                { x: 300, y: 150, largeur: 75, hauteur: 75 },
-                { x: 300, y: 225, largeur: 75, hauteur: 75 },
-                { x: 300, y: 300, largeur: 75, hauteur: 75 },
+                { x: 75, y: 75, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 75, y: 150, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 75, y: 225, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 75, y: 300, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 150, y: 75, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 150, y: 150, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 150, y: 225, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 150, y: 300, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 225, y: 75, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 225, y: 150, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 225, y: 225, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 225, y: 300, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 300, y: 75, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 300, y: 150, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 300, y: 225, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 300, y: 300, largeur: 75, hauteur: 75, chiffre_affiche: false },
 
             ];
         }
@@ -141,7 +142,7 @@ export default class MemoireJeu extends MiniJeu {
             const xClic = event.clientX - rect.left; // Position horizontale du clic
             const yClic = event.clientY - rect.top; // Position verticale du clic
 
-
+            let gagne = true;
 
             // Vérifiez si le clic est à l'intérieur de l'un des carrés
             for (const carre of this.carres) {
@@ -152,10 +153,42 @@ export default class MemoireJeu extends MiniJeu {
                     yClic <= carre.y + carre.hauteur
                 ) {
 
-                    alert('Bravo !');
-                    return; // Sortez de la boucle dès qu'un carré est cliqué
+                    if (this.premierclic == 0) {
+                        this.premierclic = carre
+                        carre.chiffre_affiche = true;
+                    } else {
+                        this.deuxiemeclic = carre
+
+                        if (this.premierclic == this.deuxiemeclic) {
+                            this.premierclic.chiffre_affiche = false;
+                            this.deuxiemeclic.chiffre_affiche = false;
+                            this.premierclic = 0;
+                            this.deuxiemeclic = 0;
+                        } else {
+                            if (this.premierclic.val === this.deuxiemeclic.val) {
+                                carre.chiffre_affiche = true;
+                                this.premierclic = 0;
+                                this.deuxiemeclic = 0;
+                            } else {
+                                this.premierclic.chiffre_affiche = false;
+                                this.deuxiemeclic.chiffre_affiche = false;
+                                this.premierclic = 0;
+                                this.deuxiemeclic = 0;
+
+                            }
+                        }
+                    }
                 }
+
+                if (!carre.chiffre_affiche) {
+                    gagne = false;
+                }
+
+
             }
+            if (gagne) this.Gagne();
+
+
         }
         console.log(this.valeur);
 
@@ -173,7 +206,6 @@ export default class MemoireJeu extends MiniJeu {
         //Trucs à faire en début de programme
     }
 
-
     Update() {// Dessiner les 12 cartes séparées par des espaces
         var aleatoire = 0;
         this.timer += 1;
@@ -184,13 +216,12 @@ export default class MemoireJeu extends MiniJeu {
 
         this.carres.forEach(carre => {
             this.dessinerCarre(carre.x, carre.y, carre.largeur, carre.hauteur, carre.numero);
-            if (this.cartesAffichees) {
+            if (this.cartesAffichees || carre.chiffre_affiche) {
 
                 this.ctx.fillStyle = 'black'
                 this.ctx.fillText(this.valeur[carre.x / 75 - 1][carre.y / 75 - 1], carre.x + 20, carre.y + 60);
             }
         });
-
 
         /*for (let row = 0; row < this.nombrepaires / 2; row++) {
             for (let col = 0; col < 4; col++) {
