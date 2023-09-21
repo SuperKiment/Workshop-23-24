@@ -117,7 +117,7 @@ export default class LabyrintheJeu extends MiniJeu {
         this.x = 340;
         this.y = 400;
         this.dy = -1;
-        this.dx = 1;
+        this.dx = 0;
     }
 
     Update() {

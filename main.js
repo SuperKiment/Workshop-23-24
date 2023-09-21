@@ -21,6 +21,8 @@ ctxHUD.canvas.height = 300;
 
 var ui = new UI(ctxHUD.canvas, ctxHUD);
 
+for (let i=1; i<6; i++) document.getElementById("rand"+i).innerHTML = Math.round(Math.random()*50+50);
+
 var miniJeux = {
     "Memoire": MemoireJeu,
     "Template": TemplateMiniJeu,
