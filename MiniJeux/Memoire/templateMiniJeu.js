@@ -1,3 +1,4 @@
+import GameManager from '../../GameManager/GameManager.js';
 import MiniJeu from '../MiniJeu.js'
 
 export default class MemoireJeu extends MiniJeu {
@@ -85,32 +86,32 @@ export default class MemoireJeu extends MiniJeu {
 
         if (reponse == 4) {
             this.carres = [
-                { x: 75, y: 75, largeur: 75, hauteur: 75, chiffre_affiche: false},
-                { x: 75, y: 150, largeur: 75, hauteur: 75, chiffre_affiche: false},
-                { x: 75, y: 225, largeur: 75, hauteur: 75, chiffre_affiche: false},
-                { x: 75, y: 300, largeur: 75, hauteur: 75, chiffre_affiche: false},
-                { x: 150, y: 75, largeur: 75, hauteur: 75, chiffre_affiche: false},
-                { x: 150, y: 150, largeur: 75, hauteur: 75, chiffre_affiche: false},
-                { x: 150, y: 225, largeur: 75, hauteur: 75, chiffre_affiche: false},
-                { x: 150, y: 300, largeur: 75, hauteur: 75, chiffre_affiche: false},
+                { x: 75, y: 75, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 75, y: 150, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 75, y: 225, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 75, y: 300, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 150, y: 75, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 150, y: 150, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 150, y: 225, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 150, y: 300, largeur: 75, hauteur: 75, chiffre_affiche: false },
 
             ];
         }
 
         if (reponse == 6) {
             this.carres = [
-                { x: 75, y: 75, largeur: 75, hauteur: 75 , chiffre_affiche: false },
-                { x: 75, y: 150, largeur: 75, hauteur: 75 , chiffre_affiche: false },
-                { x: 75, y: 225, largeur: 75, hauteur: 75 , chiffre_affiche: false },
-                { x: 75, y: 300, largeur: 75, hauteur: 75 , chiffre_affiche: false },
-                { x: 150, y: 75, largeur: 75, hauteur: 75 , chiffre_affiche: false },
-                { x: 150, y: 150, largeur: 75, hauteur: 75, chiffre_affiche: false  },
-                { x: 150, y: 225, largeur: 75, hauteur: 75 , chiffre_affiche: false },
-                { x: 150, y: 300, largeur: 75, hauteur: 75 , chiffre_affiche: false },
-                { x: 225, y: 75, largeur: 75, hauteur: 75, chiffre_affiche: false  },
-                { x: 225, y: 150, largeur: 75, hauteur: 75 , chiffre_affiche: false },
-                { x: 225, y: 225, largeur: 75, hauteur: 75 , chiffre_affiche: false },
-                { x: 225, y: 300, largeur: 75, hauteur: 75 , chiffre_affiche: false },
+                { x: 75, y: 75, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 75, y: 150, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 75, y: 225, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 75, y: 300, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 150, y: 75, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 150, y: 150, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 150, y: 225, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 150, y: 300, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 225, y: 75, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 225, y: 150, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 225, y: 225, largeur: 75, hauteur: 75, chiffre_affiche: false },
+                { x: 225, y: 300, largeur: 75, hauteur: 75, chiffre_affiche: false },
 
             ];
         }
@@ -138,57 +139,58 @@ export default class MemoireJeu extends MiniJeu {
         }
 
         function onclick(event) {
-            const rect = canvas.getBoundingClientRect(); // Obtient la position du canvas sur la page
-            const xClic = event.clientX - rect.left; // Position horizontale du clic
-            const yClic = event.clientY - rect.top; // Position verticale du clic
+            if (GameManager.etape == 1) {
+                const rect = canvas.getBoundingClientRect(); // Obtient la position du canvas sur la page
+                const xClic = event.clientX - rect.left; // Position horizontale du clic
+                const yClic = event.clientY - rect.top; // Position verticale du clic
 
-            let gagne = true;
+                let gagne = true;
 
-            // Vérifiez si le clic est à l'intérieur de l'un des carrés
-            for (const carre of this.carres) {
-                if (
-                    xClic >= carre.x &&
-                    xClic <= carre.x + carre.largeur &&
-                    yClic >= carre.y &&
-                    yClic <= carre.y + carre.hauteur
-                ) {
+                // Vérifiez si le clic est à l'intérieur de l'un des carrés
+                for (const carre of this.carres) {
+                    if (
+                        xClic >= carre.x &&
+                        xClic <= carre.x + carre.largeur &&
+                        yClic >= carre.y &&
+                        yClic <= carre.y + carre.hauteur
+                    ) {
 
-                    if (this.premierclic == 0) {
-                        this.premierclic = carre
-                        carre.chiffre_affiche = true;
-                    } else {
-                        this.deuxiemeclic = carre
-
-                        if (this.premierclic == this.deuxiemeclic) {
-                            this.premierclic.chiffre_affiche = false;
-                            this.deuxiemeclic.chiffre_affiche = false;
-                            this.premierclic = 0;
-                            this.deuxiemeclic = 0;
+                        if (this.premierclic == 0) {
+                            this.premierclic = carre
+                            carre.chiffre_affiche = true;
                         } else {
-                            if (this.premierclic.val === this.deuxiemeclic.val) {
-                                carre.chiffre_affiche = true;
-                                this.premierclic = 0;
-                                this.deuxiemeclic = 0;
-                            } else {
+                            this.deuxiemeclic = carre
+
+                            if (this.premierclic == this.deuxiemeclic) {
                                 this.premierclic.chiffre_affiche = false;
                                 this.deuxiemeclic.chiffre_affiche = false;
                                 this.premierclic = 0;
                                 this.deuxiemeclic = 0;
+                            } else {
+                                if (this.premierclic.val === this.deuxiemeclic.val) {
+                                    carre.chiffre_affiche = true;
+                                    this.premierclic = 0;
+                                    this.deuxiemeclic = 0;
+                                } else {
+                                    this.premierclic.chiffre_affiche = false;
+                                    this.deuxiemeclic.chiffre_affiche = false;
+                                    this.premierclic = 0;
+                                    this.deuxiemeclic = 0;
 
+                                }
                             }
                         }
                     }
-                }
 
-                if (!carre.chiffre_affiche) {
-                    gagne = false;
-                }
+                    if (!carre.chiffre_affiche) {
+                        gagne = false;
+                    }
 
+
+                }
+                if (gagne) this.Gagne();
 
             }
-            if (gagne) this.Gagne();
-
-
         }
         console.log(this.valeur);
 

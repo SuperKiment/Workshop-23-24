@@ -1,5 +1,4 @@
 export default class GameManager {
-    static Coins = 100;
     static runningGame;
     static allBoutons = {};
     static boutons = {
@@ -83,6 +82,7 @@ export default class GameManager {
 
         document.getElementById("ControlesLaby").style.display = "none";
         document.getElementById("SnakeControls").style.display = "none";
+        document.getElementById("Resultats").style.display = "none";
         if (this.etape != 0) {
             document.getElementById("BtnPasser").style.display = "block";
             document.getElementById("BtnRecommencer").style.display = "block";
@@ -99,6 +99,13 @@ export default class GameManager {
                 case 3:
                     document.getElementById("SnakeControls").style.display = "block";
                     this.runningGame = new this.miniJeux["Snake"](this.ctx.canvas, this.ctx);
+                    break;
+                case 4:
+                    document.getElementById("Resultats").style.display = "block";
+                    this.runningGame = new this.miniJeux["Resultats"](this.ctx.canvas, this.ctx);
+                    break;
+                case 5:
+                    location.reload();
                     break;
 
             }
