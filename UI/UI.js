@@ -17,6 +17,6 @@ export default class UI {
         this.ctx.font = "30px monospace";
 
         this.ctx.fillStyle = "black";
-        this.ctx.fillText(GameManager.Coins + " COINS", 50 ,50);
+        //this.ctx.fillText(GameManager.Coins + " COINS", 50 ,50);
     }
 }

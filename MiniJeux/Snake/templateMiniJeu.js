@@ -20,6 +20,8 @@ export default class SnakeJeu extends MiniJeu {
 
         this.unit = 30
 
+        this.timer = 0;
+
         this.scoreSpan = document.getElementById("SnakeScore");
 
         this.food = {
@@ -62,15 +64,14 @@ export default class SnakeJeu extends MiniJeu {
     }
 
     Update() {
+        this.timer++;
+
         this.ctx.drawImage(this.background, 0, 0)
 
         for (let index = 0; index < this.snake.length; index++) {
-            if (index === 0) {
-                this.ctx.fillStyle = "blue"
-            }
-            else {
-                this.ctx.fillStyle = "blue"
-            }
+
+            this.ctx.fillStyle = "rgb(255, " + index * 20 + ", " + index * 20 + ")";
+
             this.ctx.fillRect(this.snake[index].x, this.snake[index].y, this.unit, this.unit)
             this.ctx.strokeStyle = 'red'
             this.ctx.strokeRect(this.snake[index].x, this.snake[index].y, this.unit, this.unit)
@@ -83,37 +84,41 @@ export default class SnakeJeu extends MiniJeu {
         let snakeY = this.snake[0].y
 
 
+        if (this.timer > 8) {
+            this.timer = 0;
 
-        //manger la pomme
-        if (snakeX == this.food.x && snakeY == this.food.y) {
-            this.food = {
-                x: Math.floor(Math.random() * 19 + 1) * this.unit,
-                y: Math.floor(Math.random() * 19 + 1) * this.unit
+            //manger la pomme
+            if (snakeX == this.food.x && snakeY == this.food.y) {
+                this.food = {
+                    x: Math.floor(Math.random() * 19 + 1) * this.unit,
+                    y: Math.floor(Math.random() * 19 + 1) * this.unit
+                }
+                this.score += 1
+                this.eatAudio.play()
             }
-            this.score += 1
-            this.eatAudio.play()
-        }
-        else {
-            this.snake.pop()
-        }
+            else {
+                this.snake.pop()
+            }
 
 
-        if (this.d == "L") snakeX -= this.unit
-        if (this.d == "U") snakeY -= this.unit
-        if (this.d == "R") snakeX += this.unit
-        if (this.d == "D") snakeY += this.unit
+            if (this.d == "L") snakeX -= this.unit
+            if (this.d == "U") snakeY -= this.unit
+            if (this.d == "R") snakeX += this.unit
+            if (this.d == "D") snakeY += this.unit
 
-        let newHead = {
-            x: snakeX,
-            y: snakeY
+            let newHead = {
+                x: snakeX,
+                y: snakeY
+            }
+
+            //les collisions
+            if (snakeX <= -this.unit || snakeX >= this.canvas.width || snakeY <= -this.unit || snakeY >= this.canvas.height || this.collisionBody(newHead, this.snake)) {
+                this.deadAudio.play()
+                this.textGagne = "Perdu !\nTu t'es pris un mur ou ta queue !\nScore : " + this.score;
+                this.Gagne();
+            }
+            this.snake.unshift(newHead)
+            this.scoreSpan.textContent = this.score
         }
-        //les collisions
-        if (snakeX <= -this.unit || snakeX >= this.canvas.width || snakeY <= -this.unit || snakeY >= this.canvas.height || this.collisionBody(newHead, this.snake)) {
-            this.deadAudio.play()
-            this.textGagne = "Perdu !\nTu t'es pris un mur ou ta queue !"
-            this.Gagne();
-        }
-        this.snake.unshift(newHead)
-        this.scoreSpan.textContent = this.score
     }
 }
