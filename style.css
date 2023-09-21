@@ -83,7 +83,7 @@ section button {
 }
 
 .control {
-    margin-top: 15px;
+    margin-top: 10px;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 

@@ -113,6 +113,13 @@ export default class LabyrintheJeu extends MiniJeu {
         return this.grid[cellX][cellY];
     }
 
+    ResetPosition() {
+        this.x = 340;
+        this.y = 400;
+        this.dy = -1;
+        this.dx = 1;
+    }
+
     Update() {
         this.y += this.dy;
         this.x += this.dx;
@@ -131,38 +138,52 @@ export default class LabyrintheJeu extends MiniJeu {
         let collisionType = this.checkCollision(this.x, this.y);
 
         if (this.couleursInterface[collisionType] == "noir") {
-            this.x = 340;
-            this.y = 450;
-            this.dy = -1;
-            this.dx = 1;
+            this.ResetPosition();
         }
 
         if (this.couleursInterface[collisionType] == "gris") {
-            this.Gagne()
+            this.textGagne = "Vous être sorti du Labyrinthe grâce à la logique booléenne !";
+            this.Gagne();
         }
 
         if (this.couleursInterface[collisionType] == "rouge") {
-            let changement = this.calculerChangementDirection(directions["rouge"]);
-            this.dx = changement.x;
-            this.dy = changement.y;
+            if (directions["rouge"] == null) {
+                this.ResetPosition();
+            } else {
+                let changement = this.calculerChangementDirection(directions["rouge"]);
+                this.dx = changement.x;
+                this.dy = changement.y;
+            }
         }
 
         if (this.couleursInterface[collisionType] == "viollet") {
-            let changement = this.calculerChangementDirection(directions["violet"]);
-            this.dx = changement.x;
-            this.dy = changement.y;
+            if (directions["violet"] == null) {
+                this.ResetPosition();
+            } else {
+                let changement = this.calculerChangementDirection(directions["violet"]);
+                this.dx = changement.x;
+                this.dy = changement.y;
+            }
         }
 
         if (this.couleursInterface[collisionType] == "jaune") {
-            let changement = this.calculerChangementDirection(directions["jaune"]);
-            this.dx = changement.x;
-            this.dy = changement.y;
+            if (directions["jaune"] == null) {
+                this.ResetPosition();
+            } else {
+                let changement = this.calculerChangementDirection(directions["jaune"]);
+                this.dx = changement.x;
+                this.dy = changement.y;
+            }
         }
 
         if (this.couleursInterface[collisionType] == "orange") {
-            let changement = this.calculerChangementDirection(directions["orange"]);
-            this.dx = changement.x;
-            this.dy = changement.y;
+            if (directions["orange"] == null) {
+                this.ResetPosition();
+            } else {
+                let changement = this.calculerChangementDirection(directions["orange"]);
+                this.dx = changement.x;
+                this.dy = changement.y;
+            }
         }
 
         this.drawBall(this.x, this.y, this.taille, this.color, this.pinceau);
