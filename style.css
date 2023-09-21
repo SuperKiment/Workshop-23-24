@@ -79,10 +79,18 @@ button:hover {
 }
 
 section button {
-    position:sticky;
+    position: sticky;
 }
 
 .control {
-    margin-top: 20px;
+    margin-top: 15px;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.control-st {
+    background-color: lightblue;
+    color: darkblue;
+    border-radius: 7px;
+    width: 100px;
+
 }
