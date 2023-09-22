@@ -2,15 +2,7 @@ import GameManager from '../../GameManager/GameManager.js';
 import MiniJeu from '../MiniJeu.js'
 
 export default class MemoireJeu extends MiniJeu {
-    /*
-    Fonction "Gagne()" pour dire qu'on a gagné, exemple:
-        if (sorti du labyrinthe) {
-            Gagne();
-        }
-    Et le jeu s'arrêtera.
-    */
-
-    dessinerCarre(x, y, largeur, hauteur, numero) {
+    dessinerCarre(x, y, largeur, hauteur) {
         this.ctx.fillStyle = 'white'; // Couleur du carré
         this.ctx.fillRect(x, y, largeur, hauteur);
 
@@ -47,6 +39,8 @@ export default class MemoireJeu extends MiniJeu {
 
         this.valeur = [];
 
+
+        //ajoute des 0 au tableau
         if (this.nombrepaires == 4 || this.nombrepaires == 6 || this.nombrepaires == 8) {
 
             for (let i = 0; i < this.nombrepaires / 2; i++) {
@@ -59,9 +53,18 @@ export default class MemoireJeu extends MiniJeu {
                 this.valeur.push(temp);
             }
 
+
+
+
+
+
             let paires = [];
+            //crée un tableau avec les paires
             for (let i = 1; i <= this.nombrepaires; i++) paires.push(i);
 
+
+
+            //melange aleatoirement les paires dans le tableau
             for (let i = 0; i < paires.length; i++) {
 
                 for (let j = 0; j < 2; j++) {
@@ -194,6 +197,8 @@ export default class MemoireJeu extends MiniJeu {
         }
         console.log(this.valeur);
 
+        
+        //placer les chiffres dans les carrés
         for (let i = 0; i < this.carres.length; i++) {
             let carre = this.carres[i];
 
@@ -205,7 +210,6 @@ export default class MemoireJeu extends MiniJeu {
         canvas.addEventListener('click', onclick.bind(this));
 
         return
-        //Trucs à faire en début de programme
     }
 
     Update() {// Dessiner les 12 cartes séparées par des espaces
@@ -224,30 +228,5 @@ export default class MemoireJeu extends MiniJeu {
                 this.ctx.fillText(this.valeur[carre.x / 75 - 1][carre.y / 75 - 1], carre.x + 20, carre.y + 60);
             }
         });
-
-        /*for (let row = 0; row < this.nombrepaires / 2; row++) {
-            for (let col = 0; col < 4; col++) {
-                var y = col * (this.squareSize + 20); // Espacement horizontal
-                var x = row * (this.squareSize + 20); // Espacement vertical
-
-                this.ctx.fillStyle = "white";
-                this.ctx.fillRect(x, y, this.cardSize, this.cardSize);
-                /*  const x = event.client - rect.left;
-                  const y = event.client - rect.top;*/
-
-
-        // Vous pouvez personnaliser chaque carte ici
-        // Par exemple, vous pouvez ajouter du texte ou des images
-
-        /* this.ctx.strokeStyle = "black";
-         this.ctx.strokeRect(x, y, this.cardSize, this.cardSize);
-         if (this.cartesAffichees) {
-
-             this.ctx.fillStyle = "black";
-
-             this.ctx.fillText(this.valeur[row][col], x + 20, y + 50);
-         }
-     }
- }*/
     }
 }
