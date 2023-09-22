@@ -38,19 +38,27 @@ export default class GameManager {
     }
 
     static Setup(miniJeux, ctx) {
+        //Récupération du dico des mini-jeux
         this.miniJeux = miniJeux;
+        //Liaison fonction-HTML
         this.allBoutons = this.LoadBoutons();
+        //Récupération du contexte du canvas du mini-jeu
         this.ctx = ctx;
 
+        //Par défaut, le template est activé en fond derrière le menu principal
         this.runningGame = new this.miniJeux["Template"](ctx.canvas, ctx);
     }
 
     static LoadBoutons() {
         let res = {};
 
+        //En passant par tous les boutons du dictionnaire
         for (let boutonString in this.boutons) {
+            //On récupère le bouton HTML
             let bouton = document.getElementById("Btn" + boutonString);
+            //On lui ajoute la fonction associée
             bouton.addEventListener('click', this.boutons[boutonString]);
+            //Puis on le met dans un second dictionnaire de données pour une utilisation future.
             res["Btn" + boutonString] = bouton;
         }
 
@@ -72,11 +80,11 @@ export default class GameManager {
 
             case "Suivant":
                 this.etape++;
-                console.log("bfzek")
+                console.log("Suivant")
                 break;
 
             case "Recommencer":
-                //this.runningGame = new this.miniJeux["Memoire"](this.ctx.canvas, this.ctx);
+                //Pas besoin de faire quoi que ce soit car il ré-intancie un jeu
                 break;
         }
 

@@ -66,10 +66,13 @@ export default class SnakeJeu extends MiniJeu {
     Update() {
         this.timer++;
 
+        //Affichage de la grille de fond
         this.ctx.drawImage(this.background, 0, 0)
 
+        //Affichage du serpent
         for (let index = 0; index < this.snake.length; index++) {
 
+            //Avec un dégradé de rouge à blanc
             this.ctx.fillStyle = "rgb(255, " + index * 20 + ", " + index * 20 + ")";
 
             this.ctx.fillRect(this.snake[index].x, this.snake[index].y, this.unit, this.unit)
@@ -78,12 +81,13 @@ export default class SnakeJeu extends MiniJeu {
 
         }
 
+        //Affichage des nourritures
         this.ctx.drawImage(this.foodImg, this.food.x, this.food.y)
 
         let snakeX = this.snake[0].x
         let snakeY = this.snake[0].y
 
-
+        //Toutes les 80ms (timer incrémente toutes les frames, donc 8 frames = 80ms)
         if (this.timer > 8) {
             this.timer = 0;
 
@@ -100,7 +104,7 @@ export default class SnakeJeu extends MiniJeu {
                 this.snake.pop()
             }
 
-
+            //Bouger
             if (this.d == "L") snakeX -= this.unit
             if (this.d == "U") snakeY -= this.unit
             if (this.d == "R") snakeX += this.unit
